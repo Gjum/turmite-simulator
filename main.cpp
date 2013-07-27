@@ -2,9 +2,9 @@
 
 #include <SFML/Window.hpp>
 
-#include <Transitions.h>
-#include <Turmite.h>
-#include <Map.h>
+#include <Transitions.hpp>
+#include <Turmite.hpp>
+#include <Map.hpp>
 
 // TODO custom color table
 // TODO rendering and turmites in separate threads

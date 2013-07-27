@@ -1,4 +1,4 @@
-#include "Turmite.h"
+#include "Turmite.hpp"
 
 Turmite::Turmite(Map* newMap, void (* newTransitionFunction)(Turmite*)) {
     map = newMap;
