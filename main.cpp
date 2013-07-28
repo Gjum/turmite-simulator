@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include <SFML/Window.hpp>
 
@@ -22,6 +23,9 @@ int main(int argc, char *argv[]) {
     bool pauseAtBorder = true;
 
     void (* transitionFunction)(Turmite *) = Turmite_Biotope;
+    std::string transitionRule;
+//    bool useTransitionRule = false;
+    bool useTransitionRule = true;
 
     if (argc > 1) {
         std::string turmiteName(argv[1]);
@@ -32,7 +36,6 @@ int main(int argc, char *argv[]) {
             transitionFunction = Ant_RRLL;
         else if (turmiteName.compare(0, 9, "Ant_RRLRR") == 0)
             transitionFunction = Ant_RRLRR;
-
         else if (turmiteName.compare(0, 15, "Turmite_Biotope") == 0)
             transitionFunction = Turmite_Biotope;
         else if (turmiteName.compare(0, 15, "Turmite_Pulsing") == 0)
@@ -43,6 +46,11 @@ int main(int argc, char *argv[]) {
             transitionFunction = Turmite_Qrcode;
         else if (turmiteName.compare(0, 11, "Turmite_Foo") == 0)
             transitionFunction = Turmite_Foo;
+        else {
+            transitionFunction = 0;
+            transitionRule = turmiteName;
+            useTransitionRule = true;
+        }
     }
     if (argc > 2) {
         numberOfTurmites = atoi(argv[2]);
@@ -61,7 +69,9 @@ int main(int argc, char *argv[]) {
 
     Turmite *turmites[numberOfTurmites];
     for (int i = 0; i < numberOfTurmites; i++) {
-        turmites[i] = new Turmite(map, transitionFunction);
+        if (useTransitionRule)
+            turmites[i] = new Turmite(map, transitionRule);
+        else turmites[i] = new Turmite(map, transitionFunction);
     }
 
     std::cout << "Starting with mapsize " << width << "x" << height << "\n";

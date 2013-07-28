@@ -33,4 +33,3 @@ void colorTableRenderer(sf::Image *image, const Map *map);
 void subpixelRenderer(sf::Image *image, const Map *map);
 
 #endif // MAP_HPP
-
