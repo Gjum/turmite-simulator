@@ -1,6 +1,6 @@
 #include <Turmite.hpp>
 
-///// Ant transition functions /////
+/* Ant transition functions */
 
 void Ant_RL(Turmite *turmite) {
     if (turmite->getCell() == 0) turmite->turnRight();
@@ -20,9 +20,17 @@ void Ant_RRLRR(Turmite *turmite) {
     turmite->increaseCell(5);
 }
 
-///// Turmite transition functions /////
+/*  Turmite transition functions
+ *
+ * 1 = forward
+ * 2 = right
+ * 4 = u-turn (180 degrees)
+ * 8 = left
+ * 0 = halt
+ */
 
 // simulating competing species
+// {{{1, 2, 0}, {1, 8, 1}}, {{0, 2, 0}, {0, 1, 0}}}
 void Turmite_Biotope(Turmite *turmite) {
     if (turmite->getState() == 0) {
         if (turmite->getCell() == 0) {
@@ -179,7 +187,7 @@ void Turmite_Foo(Turmite *turmite) {
     }
 }
 
-/*/// old code /////
+/****** old code *******
 
 //// Biotope Turmite --------------------
 //    if (getCell() == 1) {
